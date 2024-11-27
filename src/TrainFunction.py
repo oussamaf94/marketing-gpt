@@ -4,10 +4,14 @@ def train_model(model, segments_tensor, messages_tensor, config):
     optimizer = optim.AdamW(model.parameters(), lr=3e-4, weight_decay=0.1)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=config["n_epochs"])
 
+    epoch_losses = []
+    batch_losses = []
+
     # Calculate total batches
     total_samples = len(segments_tensor)
     batch_size = config["batch_size"]
     n_batches = (total_samples + batch_size - 1) // batch_size
+          
 
     model.train()
     for epoch in range(config["n_epochs"]):
@@ -45,10 +49,35 @@ def train_model(model, segments_tensor, messages_tensor, config):
                       f"Batch {batch_idx}/{n_batches}, "
                       f"Loss: {loss.item():.4f}, "
                       f"Avg Loss: {avg_loss:.4f}")
+            
+            batch_losses.append(loss.item())
+
+        epoch_loss = total_loss / n_batches
+        epoch_losses.append(epoch_loss)
+        
+        # Plot losses at the end of each epoch
+        plt.figure(figsize=(12, 4))
+        
+        # Plot 1: Epoch Loss
+        plt.subplot(1, 2, 1)
+        plt.plot(epoch_losses, 'b-', label='Epoch Loss')
+        plt.title('Loss per Epoch')
+        plt.xlabel('Epoch')
+        plt.ylabel('Loss')
+        plt.legend()
+        
+        # Plot 2: Batch Loss
+        plt.subplot(1, 2, 2)
+        plt.plot(batch_losses, 'r-', label='Batch Loss')
+        plt.title('Loss per Batch')
+        plt.xlabel('Batch')
+        plt.ylabel('Loss')
+        plt.legend()
+        
+        plt.tight_layout()
+        plt.show()
 
         # Step the learning rate scheduler
         scheduler.step()
 
-        # Calculate epoch statistics
-        epoch_loss = total_loss / n_batches
         print(f"Epoch {epoch+1} completed. Average Loss: {epoch_loss:.4f}")
