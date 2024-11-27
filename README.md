@@ -19,7 +19,7 @@ This model has been trained only on synthetic, generated data and is not suitabl
 
 The model uses the following default configuration:
 ```python
-{
+config = {
     "n_layers": 8,
     "n_heads": 8,
     "n_embed": 512,
