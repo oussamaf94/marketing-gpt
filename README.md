@@ -10,6 +10,25 @@ Andrej Karpathy's minGPT youtube series.
 - Custom causal attention mechanism for segment-aware generation
 - Efficient implementation following Karpathy's minGPT principles
 
+## Important Note
+
+This model has been trained only on synthetic, generated data and is not suitable for production use. The training data was artificially created for demonstration purposes, and the model's outputs should not be considered representative of real marketing messages.
+
+
+## Model Configuration
+
+The model uses the following default configuration:
+```python
+{
+    "n_layers": 8,
+    "n_heads": 8,
+    "n_embed": 512,
+    "block_size": 114,
+    "dropout": 0.1,
+    "seg_length": 44,
+    "message_length": 70
+}
+
 ## Quick Start
 
 ```python
