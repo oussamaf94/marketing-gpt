@@ -7,6 +7,7 @@ The model follows a hierarchical structure where each component builds upon the 
 1. **CausalSelfAttention**
    - Implements custom attention mechanism with segment-aware masking
    - Handles both segment and message portions differently
+   - Mask is dynamically sliced during inference, but fixed during training to allow for batch optimisation
    - Uses scaled dot-product attention with parallel heads
    - Includes dropout and residual connections
 
