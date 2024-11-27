@@ -1,0 +1,23 @@
+# Core Dependencies
+torch>=2.0.0          # PyTorch for deep learning
+numpy>=1.21.0         # Numerical computations
+math                  # Mathematical operations (Python standard library)
+
+# Training Utilities
+tqdm>=4.65.0         # Progress bars for training loops
+torch.optim          # Optimization algorithms (part of PyTorch)
+torch.nn             # Neural network modules (part of PyTorch)
+torch.nn.functional  # Neural network functions (part of PyTorch)
+
+# Optional but Recommended
+matplotlib>=3.5.0    # For visualizing training progress
+pytest>=7.0.0        # For running tests
+
+# CUDA Support
+# Note: CUDA version should match your PyTorch installation
+
+torch>=2.0.0
+numpy>=1.21.0
+tqdm>=4.65.0
+matplotlib>=3.5.0
+pytest>=7.0.0
