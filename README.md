@@ -32,8 +32,8 @@ config = {
 ## Quick Start
 
 ```python
-from src.model import GPT
-from src.utils import generate_marketing_message
+import GPT
+import generate_marketing_message
 
 # Initialise model
 model = GPT(config)
